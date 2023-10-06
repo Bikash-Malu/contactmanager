@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="text-center">Update Your Contact</h1>
+      <div class="container-fulid mt-1">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <form action=""
+                  th:object="${contact}"
+                  enctype="multipart/form-data"
+                  method="post"
+                  th:action="@{/user/process-update}"
+                  class="mt-2"
+            >
+              <div class="input-group ">
+                <input required th:value="${contact.name}" type="text" id="firstname" name="name" placeholder="enter your name" class="form-control">
+              </div>
+              <div class="input-group mt-2">
+                <input required th:value="${contact.nickname}" type="text" id="secondname" name="nickname" placeholder="enter your nick name" class="form-control">
+              </div>
+              <div class="input-group mt-2">
+                <input required th:value="${contact.phone}" type="text" id="phone" name="phone" placeholder="enter your Number" class="form-control">
+              </div>
+              <div class="input-group mt-2">
+                <input required th:value="${contact.email}" type="email" id="email" name="email" placeholder="enter your Email" class="form-control">
+              </div>
+              <div class="input-group mt-2">
+                <input required th:value="${contact.work}" type="text" id="work" name="work" placeholder="enter your work" class="form-control">
+              </div>
+              <div class="input-group mt-2">
+                <textarea required th:text="${contact.description}"id="mytextarea" name="description" placeholder="enter your description here" class="form-control"  rows="10"></textarea>
+              </div>
+              <div class="custom-file mt-2">
+                <input type="file" name="profileimage">
+              </div>
+              <div class="container text-center mt-2">
+                <button class="btn btn-outline-warning" type="submit">update here!!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</body>
+</html>

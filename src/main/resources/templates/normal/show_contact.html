@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .pic{
+            width:30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<section>
+   <div class="card mt-4 mr-3">
+       <div class="card-body">
+           <h1 class="text-center">Contact List</h1>
+           <table class="table table-success table-striped">
+               <thead>
+               <tr>
+                   <th scope="col">sl no.</th>
+                   <th scope="col"> Name</th>
+                   <th scope="col">Email</th>
+                   <th scope="col">Phone No.</th>
+                   <th scope="col">Action</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr th:each="c :${contacts}">
+                   <th scope="row" th:text="${'CUTM-2023-'+c.cid}"></th>
+                   <td >
+                       <img th:src="@{'/photo/'+${c.image}}" alt="" style="height:40px; width:40px; border-radius: 50%; border:2px solid gold">
+                       <span th:text="${c.name}"></span>
+                   </td>
+                   <td >
+                       <a  th:href="@{'/user/'+${c.cid}+'/contact'}" style="text-decoration: none">
+                       <span th:text="${c.email}"></span>
+                       </a>
+                   </td>
+                   <td th:text="${c.phone}"></td>
+                   <td>
+                       <a th:href="@{'/user/delete/'+${c.cid}}"  class="btn btn-danger btn-sm">Delete</a>
+                       <br>
+                       <form th:action="@{'/user/update_contact/'+${c.cid}}" class="mt-2" method="post">
+                       <button type="submit" class="btn btn-info btn-sm">Update</button>
+                       </form>
+                   </td>
+               </tr>
+
+               </tbody>
+           </table>
+<!--           pegination-->
+           <nav aria-label="Page navigation example">
+               <ul class="pagination">
+                   <li th:each="i:${#numbers.sequence(0,totalpage)}" class="page-item"><a class="page-link" th:href="@{'/user/show-contact/'+${i}}" th:text="${i}"></a></li>
+
+               </ul>
+           </nav>
+       </div>
+   </div>
+</section>
+</body>
+</html>

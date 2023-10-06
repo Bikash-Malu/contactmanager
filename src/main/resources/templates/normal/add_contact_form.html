@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+    <style>
+        input{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<section>
+ <div class="card">
+   <div class="card-body">
+     <h1 class="text-center">Add Contact</h1>
+     <div class="container-fulid mt-1">
+       <div class="row">
+         <div class="col-md-8 offset-md-2">
+           <form action=""
+                 th:object="${contact}"
+                 enctype="multipart/form-data"
+                 method="post"
+                 th:action="@{/user/process-contact}"
+                 class="mt-2"
+           >
+             <div class="input-group">
+               <input  type="text" id="firstname" name="name" placeholder="enter your name" class="form-control">
+             </div>
+               <div class="input-group mt-2">
+                   <input  type="text" id="secondname" name="nickname" placeholder="enter your nick name" class="form-control">
+               </div>
+               <div class="input-group mt-2">
+                   <input  type="text" id="phone" name="phone" placeholder="enter your Number" class="form-control">
+               </div>
+               <div class="input-group mt-2">
+                   <input  type="email" id="email" name="email" placeholder="enter your Email" class="form-control">
+               </div>
+               <div class="input-group mt-2">
+                   <input  type="text" id="work" name="work" placeholder="enter your work" class="form-control">
+               </div>
+               <div class="input-group mt-2">
+                   <textarea id="mytextarea" name="description" placeholder="enter your description here" class="form-control"  rows="10"></textarea>
+               </div>
+             <div class="custom-file mt-2">
+               <input type="file" name="profileimage">
+             </div>
+             <div class="container text-center mt-2">
+               <button class="btn btn-outline-warning" type="submit">Save here!!</button>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+  <script src="https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
+</section>
+</body>
+</html>

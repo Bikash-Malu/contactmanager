@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body{
+      background-color: #afa4a4;
+    }
+    li{
+      font-weight: 700;
+    }
+    .bg-primary1{
+      background-color: #047368;
+    }
+    .banner{
+      width: 100%;
+      height: 93vh;
+      color: whitesmoke;
+      background:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)), url("/photo/bg.jpg");
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .my-card{
+      padding: 20px;
+      background: #ffffff;
+
+    }
+    .user_card {
+      height: 400px;
+      width: 350px;
+      margin-top: auto;
+      margin-bottom: auto;
+      background-color: #478f88;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      border-radius: 5px;
+    }
+    .sidebar{
+      width: 18%;
+      background-color: #cccaca;
+      height: 100%;
+      position: fixed;
+      padding-top: 45px;
+    }
+    .sidebar a{
+      display: block;
+      width: 100%;
+      padding: 10px 25px;
+      text-decoration: none;
+      color: gray;
+    }
+    .sidebar a:hover{
+      background: #e2e2e2;
+    }
+    .sidebar .divider{
+      height: .5px;
+      width: 100%;
+      background: #e2e2e2;
+      margin-top: 10px;
+    }
+
+    .content{
+      margin-left: 20%;
+    }
+    .close{
+      position: absolute;
+      top: 0px;
+      right: 35px;
+      font-size: 36px;
+      cursor: pointer;
+    }
+    @media(max-width:860px) {
+      .sidebar{
+        display: none;
+        width: 80% !important;
+        background-color: #cccaca;
+        height: 100vh;
+        position: fixed;
+        padding-top: 20px;
+      }
+      .content{
+        margin-left: 0% !important;
+      }
+    }
+
+  </style>
+  <title th:text="${title}">Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" th:href="style.css">
+</head>
+<body>
+<!--navbar-->
+<nav class="navbar navbar-expand-lg  bg-primary1 navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Smart Contact Manager by BIKASH</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  offset-9 text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link"><span th:text="${user.name}"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"th:href="@{/logout}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--end navbar-->
+<!--this is sidebar-->
+<div class="sidebar">
+<!--  <span class="close">&times;</span>-->
+  <a href=""  th:href="@{/user/index}" class="item" ><i class="fa-solid fa-house"></i>Home</a>
+  <a th:href="@{/user/show-contact/0}" class="item"><i class="fa-solid fa-address-book"></i>View Contacts</a>
+  <a href="" th:href="@{/user/add_contact}" class="item"><i class="fa-solid fa-phone"></i>Add Contact</a>
+  <a th:href="@{/user/profile}" class="item"><i class="fa-solid fa-user"></i>Your profile</a>
+
+  <a href="" th:href="@{/logout}" class="item"><i class="fa-solid fa-right-from-bracket"></i>logout</a>
+  <div class="divider"></div>
+</div>
+<!--end sidebar-->
+<!--content-->
+<div class="content">
+<!--  <i class="fas fa-bars m-3" onclick="toggleSider"></i>-->
+  <div th:replace="${content}"></div>
+</div>
+<!--end content-->
+<script>
+  console.log("bikash")
+</script>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</html>
